@@ -16,3 +16,65 @@ Key-value store数据库是一种简单的数据存储系统，其核心是使�
 
 这些例子表明了key-value数据库在处理需要高性能和高可扩展性的场景中的有效性。它们特别适合那些数据模型简单且访问模式主要是基于键的查找的应用场景。
 
+
+## postgreSQL数据库语句
+在PostgreSQL中，创建一个新的数据库和表涉及几个步骤。首先，你需要创建一个数据库，然后在该数据库中创建表。这里是如何操作的：
+
+1. **创建数据库**：
+   使用SQL命令`CREATE DATABASE`来创建一个名为`hello`的新数据库。这个命令通常需要在数据库管理员或具有相应权限的用户下执行。
+
+   ```sql
+   CREATE DATABASE hello;
+   ```
+
+2. **连接到数据库**：
+   创建数据库后，你需要连接到这个数据库。这一步通常通过你的数据库管理工具或命令行工具进行，例如，使用`psql`命令行工具时，你可以使用以下命令：
+
+   ```bash
+   psql -d hello
+   ```
+
+3. **创建表**：
+   在数据库中创建一个名为`mtable`的表，包含`id`和`content`两个字段。`id`字段设置为主键，通常使用整数类型，并自动增加。`content`字段可以是文本类型。这里是相应的SQL命令：
+
+   ```sql
+   CREATE TABLE mtable (
+       id SERIAL PRIMARY KEY,
+       content TEXT
+   );
+   ```
+
+将以上步骤合并，就形成了在PostgreSQL中创建数据库和表的完整过程。你需要确保在适当的权限下执行这些命令，且有必要的数据库管理权限。
+
+要向PostgreSQL中的表`mtable`插入一条随机数据，并查询这条数据，你可以按照以下步骤操作：
+
+1. **插入数据**：
+   使用`INSERT INTO`语句向`mtable`表中插入数据。这里我们可以插入一条具有随机内容的记录。为了简化示例，我们将使用文本字符串"example content"作为内容。在实际应用中，你可以根据需要插入任何文本。
+
+   ```sql
+   INSERT INTO mtable (content) VALUES ('example content');
+   ```
+
+2. **查询数据**：
+   数据插入后，你可以使用`SELECT`语句来查询表中的所有数据。这个命令会返回`mtable`表中所有记录的`id`和`content`。
+
+   ```sql
+   SELECT * FROM mtable;
+   ```
+
+将这两个SQL命令放到一起，先执行插入命令，然后执行查询命令。这样你就可以看到刚刚插入的数据了。这些操作通常在数据库管理界面或通过命令行工具执行。如果你在使用`psql`命令行工具，你可以这样操作：
+
+1. 连接到`hello`数据库：
+   ```bash
+   psql -d hello
+   ```
+
+2. 执行插入和查询命令：
+   ```sql
+   -- 插入数据
+   INSERT INTO mtable (content) VALUES ('example content');
+   -- 查询数据
+   SELECT * FROM mtable;
+   ```
+
+执行以上步骤后，你将能看到插入的数据以及表中的所有记录。
